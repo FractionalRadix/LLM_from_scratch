@@ -1,0 +1,11 @@
+certifi==2024.2.2
+charset-normalizer==3.3.2
+idna==3.7
+regex==2024.5.15
+requests==2.31.0
+tiktoken==0.7.0
+urllib3==2.2.1
+torch==2.4.0
+numpy==2.1.1
+#matplotlib==3.10.0
+
