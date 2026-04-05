@@ -28,8 +28,9 @@ data = download_and_load_file(file_path, url)
 print("Number of entries:", len(data))
 
 # Try out:
-print("Example entry:\n", data[50])
-print("Another example entry:\n", data[999])
+if __name__ == "__main__":
+    print("Example entry:\n", data[50])
+    print("Another example entry:\n", data[999])
 
 # Listing 7.2
 
@@ -47,13 +48,14 @@ def format_input(entry):
     
 # Try out:
 
-model_input = format_input(data[50])
-desired_response = f"\n\n### Response:\n{data[50]['output']}"
-print(model_input + desired_response)
+if __name__ == "__main__":
+    model_input = format_input(data[50])
+    desired_response = f"\n\n### Response:\n{data[50]['output']}"
+    print(model_input + desired_response)
 
-model_input = format_input(data[999])
-desired_response = f"\n\n### Response:\n{data[999]['output']}"
-print(model_input + desired_response)
+    model_input = format_input(data[999])
+    desired_response = f"\n\n### Response:\n{data[999]['output']}"
+    print(model_input + desired_response)
 
 # Listing 7.3
 
@@ -68,7 +70,4 @@ val_data = data[train_portion + test_portion:]
 print("Training set length:", len(train_data))  # 935
 print("Validation set length:", len(val_data))  #  55
 print("Test set length:", len(test_data))       # 110
-
-
-
 
