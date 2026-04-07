@@ -16,7 +16,7 @@ class InstructionDataset(Dataset):
             self.encoded_texts.append(tokenizer.encode(full_text))
             
     def __getitem__(self, index):
-        return self.encoded_texts(index)
+        return self.encoded_texts[index]
         
     def __len__(self):
         return len(self.data)

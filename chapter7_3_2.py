@@ -3,6 +3,8 @@ import torch
 
 from chapter7_1 import format_input
 
+# Listing 7.5
+
 # Token 50256 is "<|endoftext|>"        
 def custom_collate_fn(batch, pad_token_id=50256, ignore_index=-100, allowed_max_length=None, device="cpu"):
     batch_max_length = max(len(item) + 1 for item in batch)
@@ -43,8 +45,17 @@ if __name__ == "__main__":
     inputs, targets = custom_collate_fn(batch)
     print(inputs)
     print(targets)
+
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu") 
+#Uncomment the following two lines to use the GPU on an Apple Silicon chip.
+#if torch.backends.mps.is_available():
+#    device - torch.device("mps")
+print("Device:", device)
     
-    
+from functools import partial
 
-
-
+customized_collate_fn = partial(
+    custom_collate_fn,
+    device=device,
+    allowed_max_length=1024
+)
