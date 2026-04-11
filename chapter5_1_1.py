@@ -37,4 +37,3 @@ token_ids = generate_text_simple(
     context_size = GPT_CONFIG_124M["context_length"]
 )
 print("Output text:\n", token_ids_to_text(token_ids, tokenizer))
-

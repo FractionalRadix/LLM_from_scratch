@@ -1,6 +1,8 @@
 import torch
 import numpy as np
 
+#from chapter5_3_3 import generate
+
 def assign(left, right):
     if left.shape != right.shape:
         raise ValueError(f"Shape mismatch. Left: {left.shape}, "
@@ -67,15 +69,16 @@ def load_weights_into_gpt(gpt, params):
     gpt.final_norm.scale = assign(gpt.final_norm.scale, params["g"])
     gpt.final_norm.shift = assign(gpt.final_norm.shift, params["b"])
     gpt.out_head.weight = assign(gpt.out_head.weight, params["wte"])
-    
-torch.manual_seed(123)
-token_ids = generate(
-    model=gpt,
-    idx=text_to_token_ids("Every effort moves you", tokenizer).to(device),
-    max_new_tokens=25,
-    context_size=NEW_CONFIG["context_length"],
-    top_k=50,
-    temperature=1.5
-)
-print("Output text:\n", token_ids_to_text(token_ids, tokenizer))
+ 
+if __name__ == "__main__":
+    torch.manual_seed(123)
+    token_ids = generate(
+        model=gpt,
+        idx=text_to_token_ids("Every effort moves you", tokenizer).to(device),
+        max_new_tokens=25,
+        context_size=NEW_CONFIG["context_length"],
+        top_k=50,
+        temperature=1.5
+    )
+    print("Output text:\n", token_ids_to_text(token_ids, tokenizer))
 

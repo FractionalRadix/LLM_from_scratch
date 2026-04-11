@@ -1,5 +1,13 @@
 import numpy as np
+import torch
 
+def assign(left, right):
+    if left.shape != right.shape:
+        raise ValueError(f"Shape mismatch. Left: {left.shape}, "
+                          "Right: {right.shape}"
+        )
+    return torch.nn.Parameter(torch.tensor(right))   
+    
 def load_weights_into_gpt(gpt, params):
     gpt.pos_emb.weight = assign(gpt.pos_emb.weight, params['wpe'])
     gpt.tok_emb.weight = assign(gpt.tok_emb.weight, params['wte'])
